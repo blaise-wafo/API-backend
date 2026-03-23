@@ -1,92 +1,142 @@
-Blog API Engine — Service Backend Professionnel
- Présentation du Projet
+#  Blog API - Backend
 
-Ce projet constitue le cœur d'un système de gestion de contenu (CMS) performant. Développé pour l'unité INF222 , il implémente les standards modernes du développement web pour offrir une expérience fluide entre la plateforme d'apprentissage CleeRoute et une application réelle.
-🛠 Stack Technique & Écosystème
-Composant	Technologie	Rôle
-Runtime	Node.js	Environnement d'exécution asynchrone
-Framework	Express.js	Gestion du routage et des middlewares
-Database	SQLite / MongoDB	
+[![Node.js](https://img.shields.io/badge/Node.js-20.x-339933?logo=node.js&logoColor=white)](https://nodejs.org/)
+[![Express.js](https://img.shields.io/badge/Express.js-4.x-000000?logo=express&logoColor=white)](https://expressjs.com/)
+[![SQLite](https://img.shields.io/badge/SQLite-3.x-003B57?logo=sqlite&logoColor=white)](https://www.sqlite.org/)
 
-Persistance relationnelle ou document
-Documentation	Swagger UI	
+API RESTful complète pour la gestion d'un blog. Développée dans le cadre de l'UE **INF222 – Développement Backend**, ce projet illustre la mise en œuvre d'une architecture backend robuste et maintenable.
 
-Interface interactive pour tester l'API
-Test Tool	Postman	
+---
 
-Validation des endpoints et debugging
- Architecture Modulaire (Pattern MVC)
+##  Fonctionnalités
 
-Le projet adopte une séparation stricte des préoccupations (SoC) pour garantir une évolutivité maximale:
-Bash
+-  **CRUD complet** pour les articles de blog
+-  **Recherche flexible** par titre ou contenu
+-  **Validation des données** côté serveur
+-  **Gestion centralisée des erreurs**
+-  **Architecture MVC** (Modèle-Vue-Contrôleur)
+-  **Base de données SQLite** – aucune configuration supplémentaire nécessaire
+-  **Code modulaire et évolutif**
+
+---
+
+##  Stack Technique
+
+| Composant       | Technologie                     |
+| :-------------- | :------------------------------ |
+| **Runtime**     | Node.js                         |
+| **Framework**   | Express.js                      |
+| **Base de données** | SQLite (avec `sqlite3`)     |
+| **Tests API**   | Postman / Insomnia              |
+
+---
+
+##  Architecture du Projet
 
 blog-api/
-├──  controllers/   #  Intelligence : Logique métier et pilotage des données
-├──  routes/        #  Aiguillage : Définition des chemins d'accès API
-├──  models/        #  Structure : Schémas et interactions base de données
-├──  database.js    #  Connectivité : Configuration de la persistance
-├──  server.js      #  Ignition : Point d'entrée et configuration Express
-└──  package.json   #  Manifeste : Gestion des scripts et dépendances
 
- Interface de Programmation (API)
- Gestion des Articles
+├──  controllers/ # Logique métier (traitement des requêtes)
 
-L'API utilise les conventions de succès et d'échec HTTP pour une communication transparente.
-Méthode	Endpoint	Action	Payload
-POST	/api/articles	
+   └── articleController.js
 
-Créer un article
-	{titre, contenu, auteur...}
-GET	/api/articles	
+├──  routes/ # Définition des endpoints
 
-Lister (Filtres disponibles)
-	?categorie=Tech
-GET	/api/articles/:id	
+   └── articleRoutes.js
 
-Consulter par ID unique
-	--
-PUT	/api/articles/:id	
+├──  database.js # Configuration et connexion SQLite
 
-Mettre à jour (Partiel)
-	{titre, tags...}
-DELETE	/api/articles/:id	
+├──  server.js # Point d'entrée de l'application
 
-Supprimer définitivement
-	--
-GET	/api/articles/search	
+├──  package.json # Dépendances et scripts
 
-Recherche plein texte
-	?query=mot-clé
- Qualité & Sécurité du Code
+└──  README.md # Documentation du projet
+text
 
-    Validation d'Entrée : Utilisation de règles strictes pour rejeter les requêtes malformées (ex: titre obligatoire, contenu > 10 caractères).
 
-    Codes de Statut Standardisés : 
+---
 
-        201 : Création confirmée.
+##  Installation et Utilisation
 
-        400 : Requête invalide (Bad Request).
+### 1. Cloner le dépôt
+```bash
+git clone https://github.com/blaise-wafo/API-backend.git
+cd API-backend
+```
+### 2. Installer les dépendances
 
-        404 : Ressource introuvable.
+```bash
+npm install
+```
+### 3. Lancer le serveur
 
-        500 : Incident serveur.
+```bash
+node server.js
+```
+Le serveur démarre sur http://localhost:3000 
+![alt text](<Capture d’écran du 2026-03-23 01-47-54.png>)
+### Documentation de l'API
 
-    Performance : Recherche optimisée via des paramètres de requête.
+L'API respecte les conventions REST et utilise les codes de statut HTTP standards.
+ Endpoints disponibles
+Méthode	Endpoint	Description
 
- Déploiement Rapide
+POST	/api/articles	Créer un nouvel article
 
-    Récupération : git clone https://github.com/blaise-wafo/API-backend.git
+GET	/api/articles	Récupérer tous les articles
 
-    Initialisation : npm install
+GET	/api/articles/:id	Récupérer un article par son ID
 
-    Lancement : npm start (Accessibilité sur http://localhost:3000)
+PUT	/api/articles/:id	Modifier un article existant
 
- Informations Académiques
+DELETE	/api/articles/:id	Supprimer un article
 
-    Auteur : Blaise Wafo
+GET	/api/articles/search	Rechercher (?query=mot-clé)
+ Exemple de corps de requête (POST /api/articles)
+ ```bash
+json
 
-    Filière : Informatique (Génie Logiciel)
+{
+  "titre": "Apprendre Node.js",
+  "contenu": "Guide complet sur le développement backend avec Node.js et Express.",
+  "auteur": "Blaise Wafo",
+  "date": "2026-03-21",
+  "categorie": "Développement",
+  "tags": "backend, nodejs, express, sql"
+}
+```
+ ### Codes de statut HTTP utilisés
 
-    Enseignant : Charles Njiosseu, PhD Student 
+    200 OK – Requête réussie
 
-    Contexte : TAF 1 – Utilisation de Cleeroute (Date limite : 23/03/2026)
+    201 Created – Ressource créée avec succès
+
+    400 Bad Request – Données invalides ou manquantes
+
+    404 Not Found – Ressource introuvable
+
+    500 Internal Server Error – Erreur serveur
+
+ ### Tests avec Postman
+
+Un environnement de test est disponible. Importez la collection Postman fournie pour tester rapidement tous les endpoints.
+ Bonnes Pratiques Implémentées
+
+![alt text](<Capture d’écran du 2026-03-23 01-29-48.png>)
+
+     Validation stricte des données entrantes (titre, auteur obligatoires)
+
+     Modularité du code (séparation des responsabilités)
+
+     Gestion d'erreurs centralisée avec messages appropriés
+
+     Documentation claire et complète
+
+### Auteur
+
+Blaise Wafo
+
+ Filière : Informatique 
+ UE : INF222 – Programmation Web
+
+ Contexte : Projet réalisé pour le TAF 1 – Utilisation de CleeRoute
+ Date : Mars 2026
