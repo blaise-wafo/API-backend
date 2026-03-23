@@ -1,92 +1,64 @@
-Blog API Engine — Service Backend Professionnel
- Présentation du Projet
+Blog API – Système de Gestion de Contenu (Backend)
+Présentation du Projet
 
-Ce projet constitue le cœur d'un système de gestion de contenu (CMS) performant. Développé pour l'unité INF222 , il implémente les standards modernes du développement web pour offrir une expérience fluide entre la plateforme d'apprentissage CleeRoute et une application réelle.
-🛠 Stack Technique & Écosystème
-Composant	Technologie	Rôle
-Runtime	Node.js	Environnement d'exécution asynchrone
-Framework	Express.js	Gestion du routage et des middlewares
-Database	SQLite / MongoDB	
+Ce projet consiste en la conception et le développement d'une API RESTful pour la gestion d’un blog.
+Il a été réalisé dans le cadre de l’unité d’enseignement INF222 – Développement Backend.
+L’objectif est de structurer un apprentissage efficace en programmation web, en s’appuyant sur la plateforme CleeRoute.
 
-Persistance relationnelle ou document
-Documentation	Swagger UI	
+Stack Technique
+Environnement d’exécution : Node.js
+Framework Web : Express.js
+Base de Données : SQLite (persistance des données)
+Tests & Debugging : Postman
+Architecture du Projet
 
-Interface interactive pour tester l'API
-Test Tool	Postman	
-
-Validation des endpoints et debugging
- Architecture Modulaire (Pattern MVC)
-
-Le projet adopte une séparation stricte des préoccupations (SoC) pour garantir une évolutivité maximale:
-Bash
+Le projet suit une structure modulaire séparant clairement les routes, les contrôleurs et les modèles afin de garantir la maintenabilité et l’évolutivité du code.
 
 blog-api/
-├──  controllers/   #  Intelligence : Logique métier et pilotage des données
-├──  routes/        #  Aiguillage : Définition des chemins d'accès API
-├──  models/        #  Structure : Schémas et interactions base de données
-├──  database.js    #  Connectivité : Configuration de la persistance
-├──  server.js      #  Ignition : Point d'entrée et configuration Express
-└──  package.json   #  Manifeste : Gestion des scripts et dépendances
+├── controllers/    # Logique métier (traitement des requêtes)
+├── routes/         # Définition des endpoints
+├── database.js     # Configuration et connexion SQLite
+├── server.js       # Point d’entrée de l’application
+├── package.json    # Dépendances et scripts
+└── README.md       # Documentation du projet
+Installation et Utilisation
+1. Cloner le dépôt
+git clone https://github.com/blaise-wafo/API-backend.git
+cd API-backend
+2. Installer les dépendances
+npm install
+3. Lancer le serveur
+node server.js
 
- Interface de Programmation (API)
- Gestion des Articles
+Le serveur sera accessible sur : http://localhost:3000
 
-L'API utilise les conventions de succès et d'échec HTTP pour une communication transparente.
-Méthode	Endpoint	Action	Payload
-POST	/api/articles	
+Documentation des Endpoints
 
-Créer un article
-	{titre, contenu, auteur...}
-GET	/api/articles	
+L’API respecte les conventions REST et utilise les codes de statut HTTP appropriés (200, 201, 400, 404, 500).
 
-Lister (Filtres disponibles)
-	?categorie=Tech
-GET	/api/articles/:id	
+Méthode	Endpoint	Description
+POST	/api/articles	Créer un nouvel article
+GET	/api/articles	Récupérer tous les articles
+GET	/api/articles/:id	Lire un article spécifique via son ID
+PUT	/api/articles/:id	Modifier un article existant
+DELETE	/api/articles/:id	Supprimer un article définitivement
+GET	/api/articles/search	Recherche par titre ou contenu (?query=...)
+Exemple de corps de requête (POST)
+{
+  "titre": "Apprendre Node.js",
+  "contenu": "Guide complet sur le développement backend...",
+  "auteur": "Blaise Wafo",
+  "date": "2026-03-21",
+  "categorie": "Développement",
+  "tags": "backend, nodejs, sql"
+}
+Fonctionnalités & Bonnes Pratiques
+Validation des données : Vérification des champs obligatoires (titre, auteur) avant insertion.
+Gestion d’erreurs : Réponses claires en cas de ressources non trouvées ou de requêtes mal formées.
+Modularité : Structure organisée pour faciliter l’évolution du backend.
+Auteur
+Nom : Blaise Wafo
+Filière : Informatique (Génie Logiciel)
+UE : INF222 – Programmation Web
 
-Consulter par ID unique
-	--
-PUT	/api/articles/:id	
-
-Mettre à jour (Partiel)
-	{titre, tags...}
-DELETE	/api/articles/:id	
-
-Supprimer définitivement
-	--
-GET	/api/articles/search	
-
-Recherche plein texte
-	?query=mot-clé
- Qualité & Sécurité du Code
-
-    Validation d'Entrée : Utilisation de règles strictes pour rejeter les requêtes malformées (ex: titre obligatoire, contenu > 10 caractères).
-
-    Codes de Statut Standardisés : 
-
-        201 : Création confirmée.
-
-        400 : Requête invalide (Bad Request).
-
-        404 : Ressource introuvable.
-
-        500 : Incident serveur.
-
-    Performance : Recherche optimisée via des paramètres de requête.
-
- Déploiement Rapide
-
-    Récupération : git clone https://github.com/blaise-wafo/API-backend.git
-
-    Initialisation : npm install
-
-    Lancement : npm start (Accessibilité sur http://localhost:3000)
-
- Informations Académiques
-
-    Auteur : Blaise Wafo
-
-    Filière : Informatique (Génie Logiciel)
-
-    Enseignant : Charles Njiosseu, PhD Student 
-
-    Contexte : TAF 1 – Utilisation de Cleeroute (Date limite : 23/03/2026)
+Projet réalisé pour le TAF 1 – Utilisation de CleeRoute (Mars 2026)
