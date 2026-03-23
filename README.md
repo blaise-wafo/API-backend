@@ -5,6 +5,7 @@
 [![Express.js](https://img.shields.io/badge/Express.js-4.x-000000?logo=express&logoColor=white)](https://expressjs.com/)
 [![SQLite](https://img.shields.io/badge/SQLite-3.x-003B57?logo=sqlite&logoColor=white)](https://www.sqlite.org/)
 
+
 API RESTful complète pour la gestion d'un blog. Développée dans le cadre de l'UE **INF222 – Développement Backend**, ce projet illustre la mise en œuvre d'une architecture backend robuste et maintenable.
 
 ---
@@ -133,9 +134,11 @@ Un environnement de test est disponible. Importez la collection Postman fournie 
      Documentation claire et complète
 
 ### Auteur
+ [![HCI Project](https://img.shields.io/badge/HCI-Global-blue?style=for-the-badge)](http://hci-global.wuaze.com)
 
-Blaise Wafo
+Blaise Wafo 
 
  Filière : Informatique 
  UE : INF222 – Programmation Web
+
 
