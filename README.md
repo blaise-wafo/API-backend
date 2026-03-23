@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 #  Blog API - Backend
 
 [![Node.js](https://img.shields.io/badge/Node.js-20.x-339933?logo=node.js&logoColor=white)](https://nodejs.org/)
@@ -138,5 +139,3 @@ Blaise Wafo
  Filière : Informatique 
  UE : INF222 – Programmation Web
 
- Contexte : Projet réalisé pour le TAF 1 – Utilisation de CleeRoute
- Date : Mars 2026
